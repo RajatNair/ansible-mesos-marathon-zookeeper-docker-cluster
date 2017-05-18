@@ -1,22 +1,46 @@
 ---
 # This playbook deploys the whole application stack in this site.
 
-- name: apply common configuration to all nodes
+# # Common modules
+# - name: apply common configuration to all nodes
+#   hosts: mesosmasters
+#   remote_user: centos
+#   become: yes
+#   become_method: sudo
+#   roles:
+#     - common
+
+# # Zookeeper
+# - name: configure and deploy zookeeper
+#   hosts: mesosmasters
+#   remote_user: centos
+#   become: yes
+#   become_method: sudo
+#   roles:
+#     - zookeeper
+
+# Mesos Master
+- name: configure and deploy Mesos Master
   hosts: mesosmasters
   remote_user: centos
   become: yes
   become_method: sudo
   roles:
-    - common
+    - role: common
+    - role: zookeeper
+    - role: mesos
+      mesos_install_mode: master
+    - role: marathon
 
-- name: configure and deploy zookeeper
+  # Mesos Slaves
+- name: configure and deploy Mesos Slave
   hosts: mesosmasters
   remote_user: centos
   become: yes
   become_method: sudo
   roles:
-    - zookeeper
+    - role: common
+    - role: mesos
+      mesos_install_mode: slave
 
-# Mesos
-# Marathon
 # Docker
