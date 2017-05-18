@@ -10,6 +10,7 @@
     - common
 
 - name: configure and deploy zookeeper
+  hosts: mesosmasters
   remote_user: centos
   become: yes
   become_method: sudo
