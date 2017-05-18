@@ -1,0 +1,21 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+- name: apply common configuration to all nodes
+  hosts: mesosmasters
+  remote_user: centos
+  become: yes
+  become_method: sudo
+  roles:
+    - common
+
+- name: configure and deploy zookeeper
+  remote_user: centos
+  become: yes
+  become_method: sudo
+  roles:
+    - zookeeper
+
+# Mesos
+# Marathon
+# Docker
