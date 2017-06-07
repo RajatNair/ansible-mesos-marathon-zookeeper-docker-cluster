@@ -1,12 +1,12 @@
 ---
 - name: Ensure the tarball dir exists
-  command: /usr/bin/make_database.sh arg1 arg2
+  command: echo "SHANKAR-MAHARAJ"
   args:
     chdir: {{zookeeper_tarball_dir}}
     creates: {{zookeeper_tarball_dir}}
 
 - name: Ensure the zookeeper dir exists
-  command: /usr/bin/make_database.sh arg1 arg2
+  command: echo "SHANKAR-MAHA-RAJ"
   args:
     chdir: {{zookeeper_dir}}
     creates: {{zookeeper_dir}}
