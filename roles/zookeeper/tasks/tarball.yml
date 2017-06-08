@@ -1,5 +1,5 @@
 ---
-- name: Ensure the zookeeper dir exists
+- name: Ensure the tarball dir exists
   file:
     path: "{{ zookeeper_tarball_dir }}"
     state: directory
