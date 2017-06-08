@@ -1,0 +1,33 @@
+# Here are variables related to the Zookeeper installation
+---
+zookeeper_version: 3.4.9
+zookeeper_url: http://www.us.apache.org/dist/zookeeper/zookeeper-{{zookeeper_version}}/zookeeper-{{zookeeper_version}}.tar.gz
+
+zookeeper_register_path_env: false
+zookeeper_client_port: 2181
+zookeeper_init_limit: 5
+zookeeper_sync_limit: 2
+zookeeper_tick_time: 2000
+zookeeper_autopurge_purgeInterval: 0
+zookeeper_autopurge_snapRetainCount: 10
+
+zookeeper_data_dir: /var/lib/zookeeper
+zookeeper_log_dir: /var/log/zookeeper
+zookeeper_dir: /usr/share/zookeeper
+zookeeper_conf_dir: /etc/zookeeper
+zookeeper_tarball_dir: /opt/src
+
+# Rolling file appender setttings
+zookeeper_rolling_log_file_max_size: 10MB
+zookeeper_max_rolling_log_file_count: 10
+
+# List of dict (i.e. {zookeeper_hosts:[{host:,id:},{host:,id:},...]})
+zookeeper_hosts:
+  - host: "{{inventory_hostname}}" # the machine running
+    id: 1
+
+# Dict of ENV settings to be written into the (optional) conf/zookeeper-env.sh
+zookeeper_env: {}
+
+# Controls Zookeeper myid generation
+zookeeper_force_myid: yes

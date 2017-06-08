@@ -11,18 +11,6 @@
     state: directory
     mode: 0755
 
-# - name: Ensure the tarball dir exists
-#   command: echo "SHANKAR-MAHARAJ"
-#   args:
-#     chdir: 
-#     creates: "{{ zookeeper_tarball_dir }}"
-
-# - name: Ensure the zookeeper dir exists
-#   command: echo "SHANKAR-MAHA-RAJ"
-#   args:
-#     chdir: "{{ zookeeper_dir }}"
-#     creates: "{{ zookeeper_dir }}"
-
 - name: Download zookeeper version.
   get_url: url={{zookeeper_url}} dest={{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz
   tags: bootstrap
@@ -42,11 +30,11 @@
   file: path={{item}} state=directory owner=zookeeper group=zookeeper
   tags: bootstrap
   with_items:
-    - "{{data_dir}}"
-    - "{{log_dir}}"
+    - "{{zookeeper_data_dir}}"
+    - "{{zookeeper_log_dir}}"
 
 - name: Write myid file.
-  template: src=myid.j2 dest={{data_dir}}/myid owner=zookeeper group=zookeeper force="{{ zookeeper_force_myid }}"
+  template: src=myid.j2 dest={{zookeeper_data_dir}}/myid owner=zookeeper group=zookeeper force="{{ zookeeper_force_myid }}"
   tags: deploy
   notify:
     - Restart zookeeper
