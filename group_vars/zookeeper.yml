@@ -13,8 +13,8 @@ zookeeper_autopurge_snapRetainCount: 10
 
 zookeeper_data_dir: /var/lib/zookeeper
 zookeeper_log_dir: /var/log/zookeeper
-zookeeper_dir: "{{ zookeeper_debian_apt_install | ternary('/usr/share/zookeeper', '/opt/zookeeper-' + zookeeper_version) }}"
-zookeeper_conf_dir: "{{ zookeeper_debian_apt_install | ternary('/etc/zookeeper', zookeeper_dir) }}"
+zookeeper_dir: /usr/share/zookeeper
+zookeeper_conf_dir: /etc/zookeeper
 zookeeper_tarball_dir: /opt/src
 
 # Rolling file appender setttings
