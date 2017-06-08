@@ -1,10 +1,12 @@
 ---
-- file:
+- name: Ensure the zookeeper dir exists
+  file:
     path: "{{ zookeeper_tarball_dir }}"
     state: directory
     mode: 0755
 
-- file:
+- name: Ensure the zookeeper dir exists
+  file:
     path: "{{ zookeeper_dir }}"
     state: directory
     mode: 0755
